@@ -1,0 +1,1 @@
+﻿Select convert(date, '01.02.2015', 104);
