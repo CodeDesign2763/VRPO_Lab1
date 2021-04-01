@@ -53,20 +53,39 @@ namespace Employees
             cnn.Open();
             /* Эта команда дает ошибку */
             /* datetime заменен на date в таблице */
-            /* Не работает автоинкремент ??? */
-            SqlCommand cmd = new SqlCommand(
-                "insert into Persons (lastname, firstname, middlename," +
-                "birthdate, worksfrom, gender) values ('" + 
-                textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" +
-                dateTimePicker1.Value.ToShortDateString() + "','" +
-                dateTimePicker2.Value.ToShortDateString() + "','" + 
-                comboBox1.Text + "')", cnn);
-            MessageBox.Show("insert into Persons (lastname, firstname, middlename," +
-                "birthdate, worksfrom, gender) values ('" +
-                textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" +
-                dateTimePicker1.Value.ToShortDateString() + "','" +
-                dateTimePicker2.Value.ToShortDateString() + "','" +
-                comboBox1.Text + "')");
+            
+            /* Запрос с использованием PreparedStatements */
+            SqlCommand cmd = new SqlCommand(null, cnn);
+
+            cmd.CommandText = "INSERT INTO Persons " +
+                    "(lastname, firstname, middlename, birthdate, worksfrom, gender) " +
+                    "VALUES (@parLastName, @parFirstName, @parMiddleName, @parBirthDate, " +
+                    "@parWorksFrom, @parGender);";
+
+            SqlParameter parLastName = new SqlParameter("@parLastName", SqlDbType.NChar, 20);
+            SqlParameter parFirstName = new SqlParameter("@parFirstName", SqlDbType.NChar, 20);
+            SqlParameter parMiddleName = new SqlParameter("@parMiddleName", SqlDbType.NChar, 20);
+            /* Это решило вопрос с проблемой позиции даты и месяца */
+            SqlParameter parBirthDate = new SqlParameter("@parBirthDate", SqlDbType.Date);
+            SqlParameter parWorksFrom = new SqlParameter("@parWorksFrom", SqlDbType.Date);
+            SqlParameter parGender = new SqlParameter("@parGender", SqlDbType.NChar, 1);
+
+            parLastName.Value = textBox1.Text;
+            parFirstName.Value = textBox2.Text;
+            parMiddleName.Value = textBox3.Text;
+            parBirthDate.Value = dateTimePicker1.Value.ToShortDateString();
+            parWorksFrom.Value = dateTimePicker2.Value.ToShortDateString();
+            parGender.Value = comboBox1.Text;
+
+            cmd.Parameters.Add(parLastName);
+            cmd.Parameters.Add(parFirstName);
+            cmd.Parameters.Add(parMiddleName);
+            cmd.Parameters.Add(parBirthDate);
+            cmd.Parameters.Add(parWorksFrom);
+            cmd.Parameters.Add(parGender);
+
+            cmd.Prepare();
+                     
             cmd.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
             DataSet ds = new DataSet();
@@ -80,8 +99,20 @@ namespace Employees
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             SqlConnection cnn = new SqlConnection("Data Source = (localDB)\\MSSQLLocalDB; Initial Catalog = employees_db; Integrated Security = True; Pooling = False");
             cnn.Open();
-            SqlCommand cmd = new SqlCommand(
-                "delete from Persons where id_person = " + id, cnn);
+
+            /* Переписано с использованием PreparedStatements */
+            SqlCommand cmd = new SqlCommand(null, cnn);
+            
+            cmd.CommandText = "DELETE FROM Persons WHERE id_person=@id;";
+
+            SqlParameter parID = new SqlParameter("@id", SqlDbType.Int);
+
+            parID.Value = id;
+
+            cmd.Parameters.Add(parID);
+
+            cmd.Prepare();
+
             cmd.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
             DataSet ds = new DataSet();
@@ -103,14 +134,40 @@ namespace Employees
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             SqlConnection cnn = new SqlConnection("Data Source=(localDB)\\MSSQLLocalDB;Initial Catalog=employees_db;Integrated Security=True;Pooling=False");
             cnn.Open();
-            SqlCommand cmd = new SqlCommand(
-                "update Persons set lastname = '" + textBox1.Text + "'," + 
-                               "firstname = '" + textBox2.Text + "'," +
-                               "middlename = '" + textBox3.Text + "'," +
-                               "birthdate = '" + dateTimePicker1.Value.ToShortDateString() + "'," +
-                               "worksfrom = '" + dateTimePicker2.Value.ToShortDateString() + "', " +
-                               "gender = '" + comboBox1.Text + "' " +
-                               "where id_person = " + id, cnn);
+            
+            /* Переписано с использованием PreparedStatements */
+            SqlCommand cmd = new SqlCommand(null, cnn);
+
+            cmd.CommandText = "UPDATE Persons SET lastname=@parLastName, firstname=@parFirstName, " +
+                        "middlename=@parMiddleName, birthdate=@parBirthDate, worksfrom=@parWorksFrom, " +
+                        "gender=@parGender WHERE id_person=@parID";
+
+            SqlParameter parLastName = new SqlParameter("@parLastName", SqlDbType.NChar, 20);
+            SqlParameter parFirstName = new SqlParameter("@parFirstName", SqlDbType.NChar, 20);
+            SqlParameter parMiddleName = new SqlParameter("@parMiddleName", SqlDbType.NChar, 20);
+            SqlParameter parBirthDate = new SqlParameter("@parBirthDate", SqlDbType.Date);
+            SqlParameter parWorksFrom = new SqlParameter("@parWorksFrom", SqlDbType.Date);
+            SqlParameter parGender = new SqlParameter("@parGender", SqlDbType.NChar, 1);
+            SqlParameter parID = new SqlParameter("@parID", SqlDbType.Int);
+
+            parID.Value = id;
+            parLastName.Value = textBox1.Text;
+            parFirstName.Value = textBox2.Text;
+            parMiddleName.Value = textBox3.Text;
+            parBirthDate.Value = dateTimePicker1.Value.ToShortDateString();
+            parWorksFrom.Value = dateTimePicker2.Value.ToShortDateString();
+            parGender.Value = comboBox1.Text;
+
+            cmd.Parameters.Add(parID);
+            cmd.Parameters.Add(parLastName);
+            cmd.Parameters.Add(parFirstName);
+            cmd.Parameters.Add(parMiddleName);
+            cmd.Parameters.Add(parBirthDate);
+            cmd.Parameters.Add(parWorksFrom);
+            cmd.Parameters.Add(parGender);
+
+            cmd.Prepare();
+                      
             cmd.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
             DataSet ds = new DataSet();
@@ -171,6 +228,11 @@ namespace Employees
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
