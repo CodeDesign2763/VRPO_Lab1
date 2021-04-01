@@ -1,6 +1,6 @@
 ﻿namespace Employees
 {
-    partial class Form1
+    partial class mainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.middleNameTextBox = new System.Windows.Forms.TextBox();
+            this.genderComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.worksFromTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.editButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.employeesDGV = new System.Windows.Forms.DataGridView();
+            this.statButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -58,25 +58,25 @@
             this.label6.TabIndex = 31;
             this.label6.Text = "Отчество";
             // 
-            // textBox3
+            // middleNameTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(147, 21);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(79, 20);
-            this.textBox3.TabIndex = 30;
+            this.middleNameTextBox.Location = new System.Drawing.Point(147, 21);
+            this.middleNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.middleNameTextBox.Name = "middleNameTextBox";
+            this.middleNameTextBox.Size = new System.Drawing.Size(79, 20);
+            this.middleNameTextBox.TabIndex = 30;
             // 
-            // comboBox1
+            // genderComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.genderComboBox.FormattingEnabled = true;
+            this.genderComboBox.Items.AddRange(new object[] {
             "М",
             "Ж"});
-            this.comboBox1.Location = new System.Drawing.Point(232, 20);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(37, 21);
-            this.comboBox1.TabIndex = 29;
+            this.genderComboBox.Location = new System.Drawing.Point(232, 20);
+            this.genderComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.genderComboBox.Name = "genderComboBox";
+            this.genderComboBox.Size = new System.Drawing.Size(37, 21);
+            this.genderComboBox.TabIndex = 29;
             // 
             // label5
             // 
@@ -128,130 +128,130 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "Фамилия";
             // 
-            // dateTimePicker2
+            // worksFromTimePicker
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(363, 21);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(76, 20);
-            this.dateTimePicker2.TabIndex = 23;
-            this.dateTimePicker2.Value = new System.DateTime(2021, 3, 30, 0, 0, 0, 0);
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.worksFromTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.worksFromTimePicker.Location = new System.Drawing.Point(363, 21);
+            this.worksFromTimePicker.Margin = new System.Windows.Forms.Padding(2);
+            this.worksFromTimePicker.Name = "worksFromTimePicker";
+            this.worksFromTimePicker.Size = new System.Drawing.Size(76, 20);
+            this.worksFromTimePicker.TabIndex = 23;
+            this.worksFromTimePicker.Value = new System.DateTime(2021, 3, 30, 0, 0, 0, 0);
+            this.worksFromTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
-            // dateTimePicker1
+            // birthDateTimePicker
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(275, 21);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(84, 20);
-            this.dateTimePicker1.TabIndex = 22;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 3, 30, 0, 0, 0, 0);
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.birthDateTimePicker.Location = new System.Drawing.Point(275, 21);
+            this.birthDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
+            this.birthDateTimePicker.Name = "birthDateTimePicker";
+            this.birthDateTimePicker.Size = new System.Drawing.Size(84, 20);
+            this.birthDateTimePicker.TabIndex = 22;
+            this.birthDateTimePicker.Value = new System.DateTime(2021, 3, 30, 0, 0, 0, 0);
+            this.birthDateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // textBox2
+            // firstNameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(79, 21);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(65, 20);
-            this.textBox2.TabIndex = 21;
+            this.firstNameTextBox.Location = new System.Drawing.Point(79, 21);
+            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(65, 20);
+            this.firstNameTextBox.TabIndex = 21;
             // 
-            // textBox1
+            // lastNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(11, 21);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(65, 20);
-            this.textBox1.TabIndex = 20;
+            this.lastNameTextBox.Location = new System.Drawing.Point(11, 21);
+            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(65, 20);
+            this.lastNameTextBox.TabIndex = 20;
             // 
-            // button3
+            // editButton
             // 
-            this.button3.Location = new System.Drawing.Point(147, 178);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 24);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Редактировать";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.editButton.Location = new System.Drawing.Point(147, 178);
+            this.editButton.Margin = new System.Windows.Forms.Padding(2);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(94, 24);
+            this.editButton.TabIndex = 19;
+            this.editButton.Text = "Редактировать";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
-            // button2
+            // deleteButton
             // 
-            this.button2.Location = new System.Drawing.Point(80, 178);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 24);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Удалить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.deleteButton.Location = new System.Drawing.Point(80, 178);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(63, 24);
+            this.deleteButton.TabIndex = 18;
+            this.deleteButton.Text = "Удалить";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // button1
+            // addButton
             // 
-            this.button1.Location = new System.Drawing.Point(10, 178);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 24);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.addButton.Location = new System.Drawing.Point(10, 178);
+            this.addButton.Margin = new System.Windows.Forms.Padding(2);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(65, 24);
+            this.addButton.TabIndex = 17;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // dataGridView1
+            // employeesDGV
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 47);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(428, 128);
-            this.dataGridView1.TabIndex = 16;
-            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.employeesDGV.AllowUserToAddRows = false;
+            this.employeesDGV.AllowUserToDeleteRows = false;
+            this.employeesDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.employeesDGV.Location = new System.Drawing.Point(10, 47);
+            this.employeesDGV.Margin = new System.Windows.Forms.Padding(2);
+            this.employeesDGV.Name = "employeesDGV";
+            this.employeesDGV.ReadOnly = true;
+            this.employeesDGV.RowTemplate.Height = 28;
+            this.employeesDGV.Size = new System.Drawing.Size(428, 128);
+            this.employeesDGV.TabIndex = 16;
+            this.employeesDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.employeesDGV_CellMouseDoubleClick);
+            this.employeesDGV.SelectionChanged += new System.EventHandler(this.employeesDGV_SelectionChanged);
             // 
-            // button4
+            // statButton
             // 
-            this.button4.Location = new System.Drawing.Point(361, 179);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(77, 23);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "Статистика";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.statButton.Location = new System.Drawing.Point(361, 179);
+            this.statButton.Margin = new System.Windows.Forms.Padding(2);
+            this.statButton.Name = "statButton";
+            this.statButton.Size = new System.Drawing.Size(77, 23);
+            this.statButton.TabIndex = 32;
+            this.statButton.Text = "Статистика";
+            this.statButton.UseVisualStyleBackColor = true;
+            this.statButton.Click += new System.EventHandler(this.statButton_Click);
             // 
-            // Form1
+            // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 207);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.statButton);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.middleNameTextBox);
+            this.Controls.Add(this.genderComboBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Form1";
+            this.Controls.Add(this.worksFromTimePicker);
+            this.Controls.Add(this.birthDateTimePicker);
+            this.Controls.Add(this.firstNameTextBox);
+            this.Controls.Add(this.lastNameTextBox);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.employeesDGV);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "mainWindow";
             this.Text = "Сотрудники";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,22 +260,22 @@
         #endregion
 
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox middleNameTextBox;
+        private System.Windows.Forms.ComboBox genderComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DateTimePicker worksFromTimePicker;
+        private System.Windows.Forms.DateTimePicker birthDateTimePicker;
+        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.DataGridView employeesDGV;
+        private System.Windows.Forms.Button statButton;
     }
 }
 

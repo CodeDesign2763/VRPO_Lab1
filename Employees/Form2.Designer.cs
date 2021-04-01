@@ -1,6 +1,6 @@
 ﻿namespace Employees
 {
-    partial class Form2
+    partial class statWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.statTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.statDGV = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.statDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(108, 26);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(161, 26);
-            this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.statTimePicker.Location = new System.Drawing.Point(108, 26);
+            this.statTimePicker.Name = "dateTimePicker1";
+            this.statTimePicker.Size = new System.Drawing.Size(161, 26);
+            this.statTimePicker.TabIndex = 1;
+            this.statTimePicker.ValueChanged += new System.EventHandler(this.statTimePicker_ValueChanged);
             // 
             // label1
             // 
@@ -53,25 +53,25 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 77);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(364, 284);
-            this.dataGridView1.TabIndex = 3;
+            this.statDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.statDGV.Location = new System.Drawing.Point(16, 77);
+            this.statDGV.Name = "dataGridView1";
+            this.statDGV.RowTemplate.Height = 28;
+            this.statDGV.Size = new System.Drawing.Size(364, 284);
+            this.statDGV.TabIndex = 3;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 373);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.statDGV);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.statTimePicker);
             this.Name = "Form2";
             this.Text = "Статистика";
-            this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.statWindow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.statDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,8 +79,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker statTimePicker;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView statDGV;
     }
 }

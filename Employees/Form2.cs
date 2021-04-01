@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace Employees
 {
-    public partial class Form2 : Form
+    public partial class statWindow : Form
     {
         public DataTable dt;
 
-        public Form2()
+        public statWindow()
         {
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void statWindow_Load(object sender, EventArgs e)
         {
             int tot = 0;
             int men = 0;
@@ -29,7 +29,7 @@ namespace Employees
             double toPens = 0;
             double midAge = 0;
 
-            DateTime now = dateTimePicker1.Value;
+            DateTime now = statTimePicker.Value;
 
             // Статистика по работникам
             foreach (DataRow dr in dt.Rows)
@@ -69,37 +69,37 @@ namespace Employees
                 midAge = midAge / tot;
             }
 
-            dataGridView1.ColumnCount = 2;
-            dataGridView1.Columns[0].Width = 200;
-            dataGridView1.Columns[1].Width = 60;
+            statDGV.ColumnCount = 2;
+            statDGV.Columns[0].Width = 200;
+            statDGV.Columns[1].Width = 60;
 
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[0].Cells[0].Value = "Всего сотрудников";
-            dataGridView1.Rows[0].Cells[1].Value = tot.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[1].Cells[0].Value = "Мужчин";
-            dataGridView1.Rows[1].Cells[1].Value = men.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[2].Cells[0].Value = "Женщин";
-            dataGridView1.Rows[2].Cells[1].Value = women.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[3].Cells[0].Value = "Пенсионеров";
-            dataGridView1.Rows[3].Cells[1].Value = pens.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[4].Cells[0].Value = "Пенсионеров мужчин";
-            dataGridView1.Rows[4].Cells[1].Value = menp.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[5].Cells[0].Value = "Пенсионеров женщин";
-            dataGridView1.Rows[5].Cells[1].Value = womenp.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[6].Cells[0].Value = "Средний возраст";
-            dataGridView1.Rows[6].Cells[1].Value = midAge.ToString();
-            dataGridView1.Rows.Add();
-            dataGridView1.Rows[7].Cells[0].Value = "До пенсии лет (ср.)";
-            dataGridView1.Rows[7].Cells[1].Value = toPens.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[0].Cells[0].Value = "Всего сотрудников";
+            statDGV.Rows[0].Cells[1].Value = tot.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[1].Cells[0].Value = "Мужчин";
+            statDGV.Rows[1].Cells[1].Value = men.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[2].Cells[0].Value = "Женщин";
+            statDGV.Rows[2].Cells[1].Value = women.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[3].Cells[0].Value = "Пенсионеров";
+            statDGV.Rows[3].Cells[1].Value = pens.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[4].Cells[0].Value = "Пенсионеров мужчин";
+            statDGV.Rows[4].Cells[1].Value = menp.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[5].Cells[0].Value = "Пенсионеров женщин";
+            statDGV.Rows[5].Cells[1].Value = womenp.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[6].Cells[0].Value = "Средний возраст";
+            statDGV.Rows[6].Cells[1].Value = midAge.ToString();
+            statDGV.Rows.Add();
+            statDGV.Rows[7].Cells[0].Value = "До пенсии лет (ср.)";
+            statDGV.Rows[7].Cells[1].Value = toPens.ToString();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void statTimePicker_ValueChanged(object sender, EventArgs e)
         {
             int tot = 0;
             int men = 0;
@@ -110,7 +110,7 @@ namespace Employees
             double toPens = 0;
             double midAge = 0;
 
-            DateTime now = dateTimePicker1.Value;
+            DateTime now = statTimePicker.Value;
 
             // Статистика по работникам
             foreach (DataRow dr in dt.Rows)
@@ -150,22 +150,22 @@ namespace Employees
                 midAge = midAge / tot;
             }
 
-            dataGridView1.Rows[0].Cells[0].Value = "Всего сотрудников";
-            dataGridView1.Rows[0].Cells[1].Value = tot.ToString();
-            dataGridView1.Rows[1].Cells[0].Value = "Мужчин";
-            dataGridView1.Rows[1].Cells[1].Value = men.ToString();
-            dataGridView1.Rows[2].Cells[0].Value = "Женщин";
-            dataGridView1.Rows[2].Cells[1].Value = women.ToString();
-            dataGridView1.Rows[3].Cells[0].Value = "Пенсионеров";
-            dataGridView1.Rows[3].Cells[1].Value = pens.ToString();
-            dataGridView1.Rows[4].Cells[0].Value = "Пенсионеров мужчин";
-            dataGridView1.Rows[4].Cells[1].Value = menp.ToString();
-            dataGridView1.Rows[5].Cells[0].Value = "Пенсионеров женщин";
-            dataGridView1.Rows[5].Cells[1].Value = menp.ToString();
-            dataGridView1.Rows[6].Cells[0].Value = "Средний возраст";
-            dataGridView1.Rows[6].Cells[1].Value = midAge.ToString();
-            dataGridView1.Rows[7].Cells[0].Value = "До пенсии лет (ср.)";
-            dataGridView1.Rows[7].Cells[1].Value = toPens.ToString();
+            statDGV.Rows[0].Cells[0].Value = "Всего сотрудников";
+            statDGV.Rows[0].Cells[1].Value = tot.ToString();
+            statDGV.Rows[1].Cells[0].Value = "Мужчин";
+            statDGV.Rows[1].Cells[1].Value = men.ToString();
+            statDGV.Rows[2].Cells[0].Value = "Женщин";
+            statDGV.Rows[2].Cells[1].Value = women.ToString();
+            statDGV.Rows[3].Cells[0].Value = "Пенсионеров";
+            statDGV.Rows[3].Cells[1].Value = pens.ToString();
+            statDGV.Rows[4].Cells[0].Value = "Пенсионеров мужчин";
+            statDGV.Rows[4].Cells[1].Value = menp.ToString();
+            statDGV.Rows[5].Cells[0].Value = "Пенсионеров женщин";
+            statDGV.Rows[5].Cells[1].Value = menp.ToString();
+            statDGV.Rows[6].Cells[0].Value = "Средний возраст";
+            statDGV.Rows[6].Cells[1].Value = midAge.ToString();
+            statDGV.Rows[7].Cells[0].Value = "До пенсии лет (ср.)";
+            statDGV.Rows[7].Cells[1].Value = toPens.ToString();
 
         }
 

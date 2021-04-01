@@ -1,0 +1,14 @@
+﻿'Employees.exe' (CLR v2.0.50727: DefaultDomain): Loaded 'C:\Windows\assembly\GAC_64\mscorlib\2.0.0.0__b77a5c561934e089\mscorlib.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: DefaultDomain): Loaded 'C:\Users\Natasha\Desktop\VSTU\VvRPO\ЛР1\VSP\Employees\Employees\bin\Release\Employees.exe'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Symbols for the module 'Employees.exe' were not loaded.
+
+1. Use a debug build configuration or disable the debug option 'Enable Just My Code'. 
+2. Check the 'Symbols' settings under debugging options.'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Windows.Forms\2.0.0.0__b77a5c561934e089\System.Windows.Forms.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Drawing\2.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_64\System.Data\2.0.0.0__b77a5c561934e089\System.Data.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Xml\2.0.0.0__b77a5c561934e089\System.Xml.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_64\System.Transactions\2.0.0.0__b77a5c561934e089\System.Transactions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Employees.exe' (CLR v2.0.50727: Employees.exe): Loaded 'C:\Windows\assembly\GAC_64\System.EnterpriseServices\2.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+The program '[2732] Employees.exe' has exited with code 0 (0x0).
