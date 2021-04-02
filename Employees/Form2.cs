@@ -11,8 +11,13 @@ namespace Employees
 {
     public partial class statWindow : Form
     {
-        public DataTable dt;
+        private DataTable dt;
 
+        public statWindow(DataTable dataTable)
+        {
+            dt = dataTable;
+            InitializeComponent();
+        }
         public statWindow()
         {
             InitializeComponent();

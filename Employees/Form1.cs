@@ -13,6 +13,7 @@ namespace Employees
 {
     public partial class mainWindow : Form
     {
+        private DBI database;
         private void initEmployeesDGV()
         {
             /* Настройка employeesDGV */
@@ -30,20 +31,21 @@ namespace Employees
             employeesDGV.Columns[6].Width = 100;
             employeesDGV.Columns[6].HeaderText = "С";
         }
+        public void showTable(DataSet ds)
+        {
+            employeesDGV.DataSource = ds.Tables[0];
+        }
         public mainWindow()
         {
             InitializeComponent();
+            /* Инициализация БД */
+            database = new DB("Data Source=(localDB)\\MSSQLLocalDB;Initial Catalog=employees_db;Integrated Security=True;Pooling=False");
+            /* Подключение к БД */
+            database.connect();
 
-            /* Получение всей таблицы */
-            SqlConnection cnn = new SqlConnection("Data Source=(localDB)\\MSSQLLocalDB;Initial Catalog=employees_db;Integrated Security=True;Pooling=False");
-            cnn.Open();
-            SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cnn.Close();
-            
+
             /* Вывод таблицы на экран */
-            employeesDGV.DataSource = ds.Tables[0];
+            showTable(database.getPersonsTable());
 
             /* Настройка employeesDGV */
             initEmployeesDGV();
@@ -68,52 +70,18 @@ namespace Employees
             {
                 // Если даты верные
 
-                SqlConnection cnn = new SqlConnection("Data Source = (localDB)\\MSSQLLocalDB; Initial Catalog = employees_db; Integrated Security = True; Pooling = False");
-                cnn.Open();
-               
-                /* Запрос с использованием PreparedStatements */
-                SqlCommand cmd = new SqlCommand(null, cnn);
+                database.addEmployee(
+                        new Employee(0, lastNameTextBox.Text,
+                        firstNameTextBox.Text,
+                        middleNameTextBox.Text,
+                        genderComboBox.Text,
+                        birthDateTimePicker.Value.ToShortDateString(),
+                        worksFromTimePicker.Value.ToShortDateString()
+                        ));
 
-                cmd.CommandText = "INSERT INTO Persons " +
-                        "(lastname, firstname, middlename, birthdate, worksfrom, gender) " +
-                        "VALUES (@parLastName, @parFirstName, @parMiddleName, @parBirthDate, " +
-                        "@parWorksFrom, @parGender);";
-
-                SqlParameter parLastName = new SqlParameter("@parLastName", SqlDbType.NChar, 20);
-                SqlParameter parFirstName = new SqlParameter("@parFirstName", SqlDbType.NChar, 20);
-                SqlParameter parMiddleName = new SqlParameter("@parMiddleName", SqlDbType.NChar, 20);
-                /* Это решило вопрос с проблемой позиции даты и месяца */
-                SqlParameter parBirthDate = new SqlParameter("@parBirthDate", SqlDbType.Date);
-                SqlParameter parWorksFrom = new SqlParameter("@parWorksFrom", SqlDbType.Date);
-                SqlParameter parGender = new SqlParameter("@parGender", SqlDbType.NChar, 1);
-
-                parLastName.Value = lastNameTextBox.Text;
-                parFirstName.Value = firstNameTextBox.Text;
-                parMiddleName.Value = middleNameTextBox.Text;
-                parBirthDate.Value = birthDateTimePicker.Value.ToShortDateString();
-                parWorksFrom.Value = worksFromTimePicker.Value.ToShortDateString();
-                parGender.Value = genderComboBox.Text;
-
-                cmd.Parameters.Add(parLastName);
-                cmd.Parameters.Add(parFirstName);
-                cmd.Parameters.Add(parMiddleName);
-                cmd.Parameters.Add(parBirthDate);
-                cmd.Parameters.Add(parWorksFrom);
-                cmd.Parameters.Add(parGender);
-
-                cmd.Prepare();
-
-                cmd.ExecuteNonQuery();
-
-                /* Получение обновленной таблицы */
-                SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-
-                cnn.Close();
-
-                /* Вывод таблицы на экран */
-                employeesDGV.DataSource = ds.Tables[0];
+                /* Вывод обновленной таблицы */
+                showTable(database.getPersonsTable());
+                             
             }
             /* Если даты неверные, то вывести сообщения */
             else MessageBox.Show("Неправильно введены даты !");
@@ -121,97 +89,33 @@ namespace Employees
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            string id = employeesDGV.CurrentRow.Cells[0].Value.ToString();
-            SqlConnection cnn = new SqlConnection("Data Source = (localDB)\\MSSQLLocalDB; Initial Catalog = employees_db; Integrated Security = True; Pooling = False");
-            cnn.Open();
+            int id = Convert.ToInt32(employeesDGV.CurrentRow.Cells[0].Value.ToString());
+            /* Удаление сотрудника из базы */
+            database.deleteEmployee(new Employee(id));
 
-            /* Переписано с использованием PreparedStatements */
-            SqlCommand cmd = new SqlCommand(null, cnn);
-            
-            cmd.CommandText = "DELETE FROM Persons WHERE id_person=@id;";
-
-            SqlParameter parID = new SqlParameter("@id", SqlDbType.Int);
-
-            parID.Value = id;
-
-            cmd.Parameters.Add(parID);
-
-            cmd.Prepare();
-
-            cmd.ExecuteNonQuery();
-
-            /* Получение обновленной таблицы на экран */
-            SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cnn.Close();
-
-            /* Вывод обновленной информации на экран */
-            employeesDGV.DataSource = ds.Tables[0];
+            /* Вывод обновленной информации */
+            showTable(database.getPersonsTable());
+                    
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            /* FIXME */
-            /* Заменить эту хрень на вызов функции */
-            // Проверка правильности дат
-            TimeSpan ts = worksFromTimePicker.Value - birthDateTimePicker.Value;
-            if ((ts.TotalDays / 365) < 14 || birthDateTimePicker.Value.Year < 1900
-                || worksFromTimePicker.Value > DateTime.Now)
+            if (checkDate(worksFromTimePicker, birthDateTimePicker))
             {
-                MessageBox.Show("Неправильно введены даты !");
-                return;
+                int id = Convert.ToInt32(employeesDGV.CurrentRow.Cells[0].Value.ToString());
+
+                database.updateEmployee(
+                        new Employee(id, lastNameTextBox.Text,
+                        firstNameTextBox.Text,
+                        middleNameTextBox.Text,
+                        genderComboBox.Text,
+                        birthDateTimePicker.Value.ToShortDateString(),
+                        worksFromTimePicker.Value.ToShortDateString()
+                        ));
+
+                showTable(database.getPersonsTable());
             }
-
-            string id = employeesDGV.CurrentRow.Cells[0].Value.ToString();
-
-            SqlConnection cnn = new SqlConnection("Data Source=(localDB)\\MSSQLLocalDB;Initial Catalog=employees_db;Integrated Security=True;Pooling=False");
-            cnn.Open();
-            
-            /* Переписано с использованием PreparedStatements */
-            /* Обновление */
-            SqlCommand cmd = new SqlCommand(null, cnn);
-
-            cmd.CommandText = "UPDATE Persons SET lastname=@parLastName, firstname=@parFirstName, " +
-                        "middlename=@parMiddleName, birthdate=@parBirthDate, worksfrom=@parWorksFrom, " +
-                        "gender=@parGender WHERE id_person=@parID";
-
-            SqlParameter parLastName = new SqlParameter("@parLastName", SqlDbType.NChar, 20);
-            SqlParameter parFirstName = new SqlParameter("@parFirstName", SqlDbType.NChar, 20);
-            SqlParameter parMiddleName = new SqlParameter("@parMiddleName", SqlDbType.NChar, 20);
-            SqlParameter parBirthDate = new SqlParameter("@parBirthDate", SqlDbType.Date);
-            SqlParameter parWorksFrom = new SqlParameter("@parWorksFrom", SqlDbType.Date);
-            SqlParameter parGender = new SqlParameter("@parGender", SqlDbType.NChar, 1);
-            SqlParameter parID = new SqlParameter("@parID", SqlDbType.Int);
-
-            parID.Value = id;
-            parLastName.Value = lastNameTextBox.Text;
-            parFirstName.Value = firstNameTextBox.Text;
-            parMiddleName.Value = middleNameTextBox.Text;
-            parBirthDate.Value = birthDateTimePicker.Value.ToShortDateString();
-            parWorksFrom.Value = worksFromTimePicker.Value.ToShortDateString();
-            parGender.Value = genderComboBox.Text;
-
-            cmd.Parameters.Add(parID);
-            cmd.Parameters.Add(parLastName);
-            cmd.Parameters.Add(parFirstName);
-            cmd.Parameters.Add(parMiddleName);
-            cmd.Parameters.Add(parBirthDate);
-            cmd.Parameters.Add(parWorksFrom);
-            cmd.Parameters.Add(parGender);
-
-            cmd.Prepare();
-                      
-            cmd.ExecuteNonQuery();
-
-            /* Получение обновленной таблицы */
-            SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cnn.Close();
-
-            /* Вывод обновленной информации на экран */
-            employeesDGV.DataSource = ds.Tables[0];
+            else MessageBox.Show("Неправильно введены даты !");
         }
 
         private void employeesDGV_SelectionChanged(object sender, EventArgs e)
@@ -231,81 +135,23 @@ namespace Employees
 
         private void employeesDGV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            /* FIXME */
-            /* Убрать расчеты из MessageBox */
-
-            string id = employeesDGV.CurrentRow.Cells[0].Value.ToString();
-            DateTime now = DateTime.Now;
-            DateTime born = DateTime.Parse(employeesDGV.CurrentRow.Cells[5].Value.ToString());
-            DateTime from = DateTime.Parse(employeesDGV.CurrentRow.Cells[6].Value.ToString());
-            Boolean man = employeesDGV.CurrentRow.Cells[4].Value.ToString() == "М";
+            /* Получение данных из таблицы */
+            String born = DateTime.Parse(employeesDGV.CurrentRow.Cells[5].Value.ToString()).ToShortDateString();
+            String from = DateTime.Parse(employeesDGV.CurrentRow.Cells[6].Value.ToString()).ToShortDateString();
+            String gender = employeesDGV.CurrentRow.Cells[4].Value.ToString();
             
-            /* Дата выхода на пенсию */
-            DateTime toPens;
-            if (man)
-                toPens = born.AddYears(60);
-            else
-                toPens = born.AddYears(55);
+            /* Создание на их основе экземпляра класса Employee */
+            Employee empl = new Employee(0, null, null, null, gender, born, from);    
+            
+            /* Вывод сообщения на экран */
+            MessageBox.Show(empl.getStatMessage());
 
-            /* Возраст */
-            String age = (Convert.ToInt32((now - born).TotalDays / 365)).ToString();
-
-            /* Стаж работы */
-            String lengthOfWork = (Convert.ToInt32((now - from).TotalDays / 365)).ToString();
-
-            /* Все еще работает? */
-            bool isWorking = now > toPens ?  false : true;
-
-            /* Статус */
-            String status = isWorking ? "Работает" : "Вышел на пенсию";
-
-            /* Осталось времени до пенсии */
-            String timeLeftUntilRetirement = "";
-
-            /* Сколько уже находится на пенсии? */
-            String lengthOfWorkAfterRetirement = "";
-
-            /* Формируем сообщение для пользователя */
-            string message = "Возраст: " + age + "\n" +
-                    "Дата выхода на пенсию: " + toPens.ToShortDateString() + "\n" +
-                    "Стаж работы: (лет) " + lengthOfWork + "\n" +
-                    "Статус: " + status + "\n";
-
-            if (isWorking)
-            {
-                timeLeftUntilRetirement = (System.Math.Ceiling((toPens - now).TotalDays / 365)).ToString();
-                message += "Осталось до пенсии: (лет) " + timeLeftUntilRetirement;
-            }
-            else
-            {
-                lengthOfWorkAfterRetirement = (now - toPens).ToString();
-                message += "Получает пенсию: (лет) " + timeLeftUntilRetirement;
-            }
-
-            /* Вывод сообщения при помощи MessageBox */
-            MessageBox.Show(message);
-
-            /* Оригинальная версия */
-            //MessageBox.Show("Возраст : " + 
-            //    (Convert.ToInt32((now - born).TotalDays / 365)).ToString() +
-            //    "\nВыход на пенсию : " + toPens.ToShortDateString() +
-            //    "\nСтаж работы (лет) : " + 
-            //    (Convert.ToInt32((now - from).TotalDays / 365)).ToString() + 
-            //    "\n" + (now > toPens ? "На" : "До") + " пенсии (лет) : " + 
-            //    (Convert.ToInt32((now > toPens ? (now - toPens) :
-            //        (toPens - now)).TotalDays / 365)).ToString(), 
-            //    employeesDGV.CurrentRow.Cells[1].Value.ToString() + " " +
-            //    employeesDGV.CurrentRow.Cells[2].Value.ToString().Substring(0,1)+"." +
-            //    employeesDGV.CurrentRow.Cells[3].Value.ToString().Substring(0,1)+".");
         }
 
         private void statButton_Click(object sender, EventArgs e)
         {
-            statWindow frm = new statWindow();
-            /* FIXME */
-            /* Охренно сделано !!! */
-            /* Вариант добавить еще один конструктор для statWindow */
-            frm.dt = (DataTable)employeesDGV.DataSource;
+            statWindow frm = new statWindow((DataTable)employeesDGV.DataSource);
+            
             frm.Show();
         }
 
@@ -320,6 +166,16 @@ namespace Employees
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            database.disconnect();
+        }
+
+        private void employeesDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -211,6 +211,7 @@
             this.employeesDGV.RowTemplate.Height = 28;
             this.employeesDGV.Size = new System.Drawing.Size(428, 128);
             this.employeesDGV.TabIndex = 16;
+            this.employeesDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employeesDGV_CellContentClick);
             this.employeesDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.employeesDGV_CellMouseDoubleClick);
             this.employeesDGV.SelectionChanged += new System.EventHandler(this.employeesDGV_SelectionChanged);
             // 
@@ -250,6 +251,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "mainWindow";
             this.Text = "Сотрудники";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainWindow_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.employeesDGV)).EndInit();
             this.ResumeLayout(false);
