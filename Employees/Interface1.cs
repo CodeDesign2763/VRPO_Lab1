@@ -8,12 +8,13 @@ namespace Employees
 {
     interface DBI
     {
-        DataSet getPersonsTable();
+        DataSet getEmployeesTable();
         void connect();
         void disconnect();
         void addEmployee(Employee empl);
         void deleteEmployee(Employee empl);
         void updateEmployee(Employee empl);
+        List<Employee> getEmployeesList();
 
 
     }

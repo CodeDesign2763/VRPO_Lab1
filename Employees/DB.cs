@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Employees
 {
@@ -24,7 +25,7 @@ namespace Employees
             cnn.Close();
         }
 
-        public DataSet getPersonsTable()
+        public DataSet getEmployeesTable()
         {
             SqlDataAdapter da = new SqlDataAdapter("select * from Persons", cnn);
             DataSet ds = new DataSet();
@@ -123,6 +124,30 @@ namespace Employees
 
             cmd.ExecuteNonQuery();
 
+        }
+
+        public List<Employee> getEmployeesList()
+        {
+            DataTable dt = getEmployeesTable().Tables[0];
+            Employee empl;
+            List<Employee> emplList = new List<Employee>();
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                /* В презентации почему-то пропущено поле middleName */
+                // MessageBox.Show(dr[5].ToString() + " " + dr[6].ToString());
+                empl = new Employee(
+                        Int32.Parse(dr[0].ToString()),
+                        dr[1].ToString(),
+                        dr[2].ToString(),
+                        dr[3].ToString(),
+                        dr[4].ToString(),
+                        DateTime.Parse(dr[5].ToString()).ToShortDateString(),
+                        DateTime.Parse(dr[6].ToString()).ToShortDateString());
+
+                emplList.Add(empl);
+            }
+            return emplList;
         }
     }
 }

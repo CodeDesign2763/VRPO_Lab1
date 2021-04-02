@@ -31,7 +31,7 @@ namespace Employees
             employeesDGV.Columns[6].Width = 100;
             employeesDGV.Columns[6].HeaderText = "С";
         }
-        public void showTable(DataSet ds)
+        private void showTable(DataSet ds)
         {
             employeesDGV.DataSource = ds.Tables[0];
         }
@@ -45,7 +45,7 @@ namespace Employees
 
 
             /* Вывод таблицы на экран */
-            showTable(database.getPersonsTable());
+            showTable(database.getEmployeesTable());
 
             /* Настройка employeesDGV */
             initEmployeesDGV();
@@ -80,7 +80,7 @@ namespace Employees
                         ));
 
                 /* Вывод обновленной таблицы */
-                showTable(database.getPersonsTable());
+                showTable(database.getEmployeesTable());
                              
             }
             /* Если даты неверные, то вывести сообщения */
@@ -94,7 +94,7 @@ namespace Employees
             database.deleteEmployee(new Employee(id));
 
             /* Вывод обновленной информации */
-            showTable(database.getPersonsTable());
+            showTable(database.getEmployeesTable());
                     
         }
 
@@ -113,7 +113,7 @@ namespace Employees
                         worksFromTimePicker.Value.ToShortDateString()
                         ));
 
-                showTable(database.getPersonsTable());
+                showTable(database.getEmployeesTable());
             }
             else MessageBox.Show("Неправильно введены даты !");
         }
@@ -150,7 +150,8 @@ namespace Employees
 
         private void statButton_Click(object sender, EventArgs e)
         {
-            statWindow frm = new statWindow((DataTable)employeesDGV.DataSource);
+            //List<Employee> el = database.getEmployeesList();
+            statWindow frm = new statWindow((DataTable)employeesDGV.DataSource,database.getEmployeesList());
             
             frm.Show();
         }

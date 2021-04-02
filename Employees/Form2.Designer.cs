@@ -34,41 +34,46 @@
             ((System.ComponentModel.ISupportInitialize)(this.statDGV)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // statTimePicker
             // 
-            this.statTimePicker.Location = new System.Drawing.Point(108, 26);
-            this.statTimePicker.Name = "dateTimePicker1";
-            this.statTimePicker.Size = new System.Drawing.Size(161, 26);
+            this.statTimePicker.Enabled = false;
+            this.statTimePicker.Location = new System.Drawing.Point(72, 17);
+            this.statTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.statTimePicker.Name = "statTimePicker";
+            this.statTimePicker.Size = new System.Drawing.Size(109, 20);
             this.statTimePicker.TabIndex = 1;
             this.statTimePicker.ValueChanged += new System.EventHandler(this.statTimePicker_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 30);
+            this.label1.Location = new System.Drawing.Point(8, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 20);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Данные на";
             // 
-            // dataGridView1
+            // statDGV
             // 
             this.statDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.statDGV.Location = new System.Drawing.Point(16, 77);
-            this.statDGV.Name = "dataGridView1";
+            this.statDGV.Location = new System.Drawing.Point(11, 58);
+            this.statDGV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.statDGV.Name = "statDGV";
             this.statDGV.RowTemplate.Height = 28;
-            this.statDGV.Size = new System.Drawing.Size(364, 284);
+            this.statDGV.Size = new System.Drawing.Size(323, 322);
             this.statDGV.TabIndex = 3;
             // 
-            // Form2
+            // statWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 373);
+            this.ClientSize = new System.Drawing.Size(345, 391);
             this.Controls.Add(this.statDGV);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.statTimePicker);
-            this.Name = "Form2";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "statWindow";
             this.Text = "Статистика";
             this.Load += new System.EventHandler(this.statWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.statDGV)).EndInit();

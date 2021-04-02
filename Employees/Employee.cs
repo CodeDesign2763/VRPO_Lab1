@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Employees
 {
-    class Employee
+    public class Employee
     {
         private String lastName;
         private String firstName;
@@ -63,33 +63,63 @@ namespace Employees
 
 
         /* Статистика по человеку */
-        public String getStatMessage()
+        /* Дата выхода на пенсию */
+        public Double getAge()
         {
             DateTime now = DateTime.Now;
             DateTime born = getBirthDate();
+            return (now - born).TotalDays / 365;
+        }
+        public DateTime getRetDate()
+        {
+            DateTime dateRet;
+            if (getGender() == 'М')
+                dateRet = getBirthDate().AddYears(60);
+            else
+                dateRet = getBirthDate().AddYears(55);
+            return dateRet;
+        }
+
+        /* Пенсионер? */
+        public bool isRet()
+        {
+            
+            /* Все еще работает? */
+            return DateTime.Now > getRetDate() ? true : false;
+            
+        }
+        
+        /* Осталось времени до пенсии */
+        public Double getTimeToRet()
+        {
+            
+            return isRet() ? 0 : (getRetDate() - DateTime.Now).TotalDays / 365;
+        }
+        public String getStatMessage()
+        {
+            DateTime now = DateTime.Now;
+            //DateTime born = getBirthDate();
             DateTime from = getWorksFrom();
 
 
             /* Дата выхода на пенсию */
-            DateTime toPens;
-            if (getGender()=='М')
-                toPens = getBirthDate().AddYears(60);
-            else
-                toPens = getBirthDate().AddYears(55);
-
+            //DateTime datePens;
+            //if (getGender()=='М')
+            //    datePens = getBirthDate().AddYears(60);
+            //else
+            //    datePens = getBirthDate().AddYears(55);
             
-
             /* Возраст */
-            String age = (Convert.ToInt32((now - born).TotalDays / 365)).ToString();
+            String age =getAge().ToString();
 
             /* Стаж работы */
             String lengthOfWork = (Convert.ToInt32((now - from).TotalDays / 365)).ToString();
 
             /* Все еще работает? */
-            bool isWorking = now > toPens ? false : true;
+            //bool isWorking = now > datePens ? false : true;
 
             /* Статус */
-            String status = isWorking ? "Работает" : "Вышел на пенсию";
+            String status = !isRet() ? "Работает" : "Вышел на пенсию";
 
             /* Осталось времени до пенсии */
             String timeLeftUntilRetirement = "";
@@ -99,18 +129,18 @@ namespace Employees
 
             /* Формируем сообщение для пользователя */
             string message = "Возраст: " + age + "\n" +
-                    "Дата выхода на пенсию: " + toPens.ToShortDateString() + "\n" +
+                    "Дата выхода на пенсию: " + getRetDate().ToShortDateString() + "\n" +
                     "Стаж работы: (лет) " + lengthOfWork + "\n" +
                     "Статус: " + status + "\n";
 
-            if (isWorking)
+            if (!isRet())
             {
-                timeLeftUntilRetirement = (System.Math.Ceiling((toPens - now).TotalDays / 365)).ToString();
+                timeLeftUntilRetirement = getTimeToRet().ToString();
                 message += "Осталось до пенсии: (лет) " + timeLeftUntilRetirement;
             }
             else
             {
-                lengthOfWorkAfterRetirement = (now - toPens).ToString();
+                lengthOfWorkAfterRetirement = (now - getRetDate()).ToString();
                 message += "Получает пенсию: (лет) " + timeLeftUntilRetirement;
             }
             return message;

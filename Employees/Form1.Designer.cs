@@ -209,7 +209,7 @@
             this.employeesDGV.Name = "employeesDGV";
             this.employeesDGV.ReadOnly = true;
             this.employeesDGV.RowTemplate.Height = 28;
-            this.employeesDGV.Size = new System.Drawing.Size(428, 128);
+            this.employeesDGV.Size = new System.Drawing.Size(649, 128);
             this.employeesDGV.TabIndex = 16;
             this.employeesDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employeesDGV_CellContentClick);
             this.employeesDGV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.employeesDGV_CellMouseDoubleClick);
@@ -230,7 +230,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 207);
+            this.ClientSize = new System.Drawing.Size(670, 207);
             this.Controls.Add(this.statButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.middleNameTextBox);
