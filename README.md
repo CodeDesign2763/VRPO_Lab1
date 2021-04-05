@@ -29,7 +29,7 @@ Windows 7, Microsoft Visual Studio CE 2019.
 
 #### Проблемы, связанные с instance
 
-![Ошибка при подключении к instance](./Screenshots/error1.png)
+![Ошибка при подключении к instance](./Screenshots/Error1.png)
 
 При возникновении проблем при помощи команды `mssqllocaldb info` необходимо убедиться, что **instance** `MSSQLLocalDB` существует. Если это не так, ее нужно создать вручную при помощи `mssqllocaldb`. Если она присутствует, но проблема не исчезает, то **instance** следует удалить вручную и создать повторно. 
 
@@ -90,7 +90,9 @@ Windows 7, Microsoft Visual Studio CE 2019.
 ### Код
 
 См. каталог `Employees`
+
 [Класс MainWindow](./Employees/Form1.cs)
+
 [Класс StatWindow](./Employees/Form2.cs)
 
 ### Снимки экрана

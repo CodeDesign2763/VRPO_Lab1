@@ -1,6 +1,6 @@
 ﻿namespace Employees
 {
-    partial class mainWindow
+    partial class MainWindow
     {
         /// <summary>
         /// Required designer variable.

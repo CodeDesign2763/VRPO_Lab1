@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 namespace Employees
 {
-    public partial class mainWindow : Form
+    public partial class MainWindow : Form
     {
         private DBI database;
         private void initEmployeesDGV()
@@ -35,7 +35,7 @@ namespace Employees
         {
             employeesDGV.DataSource = ds.Tables[0];
         }
-        public mainWindow()
+        public MainWindow()
         {
             InitializeComponent();
             /* Инициализация БД */
@@ -151,7 +151,7 @@ namespace Employees
         private void statButton_Click(object sender, EventArgs e)
         {
             //List<Employee> el = database.getEmployeesList();
-            statWindow frm = new statWindow((DataTable)employeesDGV.DataSource,database.getEmployeesList());
+            StatWindow frm = new StatWindow((DataTable)employeesDGV.DataSource,database.getEmployeesList());
             
             frm.Show();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Employees
 {
-    partial class statWindow
+    partial class StatWindow
     {
         /// <summary>
         /// Required designer variable.

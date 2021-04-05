@@ -9,20 +9,20 @@ using System.Windows.Forms;
 
 namespace Employees
 {
-    public partial class statWindow : Form
+    public partial class StatWindow : Form
     {
         private DataTable dt;
         private List<Employee> emplList;
         //private List<RepItem> report;
         
 
-        public statWindow(DataTable dataTable, List<Employee> el)
+        public StatWindow(DataTable dataTable, List<Employee> el)
         {
             dt = dataTable;
             emplList = el;
             InitializeComponent();
         }
-        public statWindow()
+        public StatWindow()
         {
             InitializeComponent();
         }
